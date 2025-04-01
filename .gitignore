@@ -1,0 +1,6 @@
+# Ignore all .env files anywhere in the project
+**/.env
+# Ignore all .venv directories anywhere in the project
+**/.venv/
+# Ignore all __pycache__ directories anywhere in the project
+**/__pycache__/

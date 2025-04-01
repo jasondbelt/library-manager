@@ -1,0 +1,66 @@
+[
+    {
+      "title": "Book 1",
+      "author": "Author 1",
+      "isbn": "978-1234567890",
+      "genre": "Fantasy",
+      "published_date": "2021-01-01"
+    },
+    {
+      "title": "Book 2",
+      "author": "Author 2",
+      "isbn": "978-0987654321",
+      "genre": "Science Fiction",
+      "published_date": "2020-05-15"
+    },
+    {
+      "title": "Book 3",
+      "author": "Author 3",
+      "isbn": "978-5678901234",
+      "genre": "Mystery",
+      "published_date": "2019-11-30"
+    },
+    {
+      "title": "Book 4",
+      "author": "Author 4",
+      "isbn": "978-1111111111",
+      "genre": "Fantasy",
+      "published_date": "2022-03-20"
+    },
+    {
+      "title": "Book 5",
+      "author": "Author 5",
+      "isbn": "978-2222222222",
+      "genre": "Science Fiction",
+      "published_date": "2018-09-10"
+    },
+    {
+      "title": "Book 6",
+      "author": "Author 6",
+      "isbn": "978-3333333333",
+      "genre": "Mystery",
+      "published_date": "2017-06-05"
+    },
+    {
+      "title": "Book 7",
+      "author": "Author 7",
+      "isbn": "978-4444444444",
+      "genre": "Fantasy",
+      "published_date": "2019-12-25"
+    },
+    {
+      "title": "Book 8",
+      "author": "Author 8",
+      "isbn": "978-5555555555",
+      "genre": "Science Fiction",
+      "published_date": "2023-04-08"
+    },
+    {
+      "title": "Book 9",
+      "author": "Author 9",
+      "isbn": "978-6666666666",
+      "genre": "Mystery",
+      "published_date": "2020-10-03"
+    }
+  ]
+  
