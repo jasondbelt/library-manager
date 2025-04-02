@@ -5,5 +5,5 @@ from book_app.models import Book
 
 # Create your models here.
 class Rental(models.Model):
-    rental_list = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='client')
-    rentals = models.ManyToManyField(Book, blank=True, related_name='books')
+    renter = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='rental_list')
+    rental = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book')
