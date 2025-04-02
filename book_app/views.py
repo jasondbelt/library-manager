@@ -8,6 +8,7 @@ from rest_framework.response import Response
 # Create your views here.
 
 class All_books(APIView):
+
     def get(self, request):
         books = Book.objects.all()
         serialized_books = BookSerializer(books, many=True)
@@ -15,6 +16,7 @@ class All_books(APIView):
 
 
 class A_book(APIView):
+    
     def get(self, request, id):
         book = get_object_or_404(Book, id=id)
         return Response(BookSerializer(book).data)

@@ -23,6 +23,7 @@ class TokenReq(APIView):
 # Create your views here.
 
 class All_clients(APIView):
+
     def get(self, request):
         clients = Client.objects.all()
         serialized_clients = ClientSerializer(clients, many=True)
@@ -49,6 +50,7 @@ class SignUp(APIView):
 
 
 class LogIn(APIView):
+    
     def post(self, request):
         email = request.data.get("email")
         password = request.data.get("password")
