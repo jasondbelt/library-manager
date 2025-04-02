@@ -32,7 +32,7 @@ class All_clients(APIView):
 
 class SignUp(APIView):
     """
-    requires email and password
+    dummy data requires email and password
     {
         "email": "jason@example.com",
         "password" : "123"
