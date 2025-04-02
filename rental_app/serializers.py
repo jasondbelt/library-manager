@@ -12,4 +12,4 @@ class RentalSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Rental
-        fields = ["id", "renter", "rentals"]
+        fields = ["id", "rental_list", "rentals"]
