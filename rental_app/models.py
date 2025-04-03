@@ -7,4 +7,4 @@ from book_app.models import Book
 class Rental(models.Model):
     renter = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='rental_list')
     rental = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book')
-    # description = models.CharField(default="add_description", max_length=255, null=False, blank=False)
+    description = models.CharField(default="add_description", max_length=255, null=False, blank=False)

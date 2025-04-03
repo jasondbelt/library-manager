@@ -9,7 +9,6 @@ from rest_framework.status import (
     HTTP_201_CREATED, 
     HTTP_204_NO_CONTENT, 
     HTTP_400_BAD_REQUEST,
-    HTTP_404_NOT_FOUND
 )
 # Create your views here.
 
@@ -26,9 +25,13 @@ class All_rentals(APIView):
         
     def post(self, request):
         try:
+            # get authenticated user
             client = request.user
+            # retrieve book instuance using provided rental_id
             book = Book.objects.get(id=request.data.get('rental'))
+            # create new rental instance associating client with selected book
             rental_instance = Rental.objects.create(renter=client, rental=book)
+            # serialize the data
             new_rental = RentalSerializer(rental_instance)
             return Response(new_rental.data, status=HTTP_201_CREATED)
         except Exception:
@@ -41,20 +44,15 @@ class A_rental(APIView):
         rental = get_object_or_404(Rental, id=id)
         return Response(RentalSerializer(rental).data)
     
-    # def put(self, request, id):
-    #     rental = get_object_or_404(Rental, id=id)
-    #     updated_rental = RentalSerializer(rental, data=request.data, partial=True)
-    #     if updated_rental.is_valid():
-    #         updated_rental.save()
-    #         return Response(updated_rental.data, status=HTTP_201_CREATED)
-    #     return Response(status=HTTP_400_BAD_REQUEST)
+    def put(self, request, id):
+        rental = get_object_or_404(Rental, id=id)
+        updated_rental = RentalSerializer(rental, data=request.data, partial=True)
+        if updated_rental.is_valid():
+            updated_rental.save()
+            return Response(updated_rental.data, status=HTTP_201_CREATED)
+        return Response(status=HTTP_400_BAD_REQUEST)
 
     def delete(self, request, id):
         rental = get_object_or_404(Rental, id=id)
         rental.delete()
         return Response(status=HTTP_204_NO_CONTENT)
-
-
-
-
-    
