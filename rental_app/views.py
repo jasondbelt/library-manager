@@ -1,6 +1,7 @@
 #RENTAL_APP.VIEWS
 from django.shortcuts import render, get_object_or_404
 from .serializers import Rental, RentalSerializer
+from book_app.models import Book
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import (
@@ -17,25 +18,21 @@ class All_rentals(APIView):
     def get(self, request):
         try:
             client = request.user
-            all_rentals = RentalSerializer(client.rental_list.all(), many=True)
-            return Response(all_rentals.data, status=HTTP_200_OK)
-        except Exception as e:
-            return Response(e, status=HTTP_400_BAD_REQUEST)
+            serialized_rentals = RentalSerializer(client.rental_list.all(), many=True)
+            return Response(serialized_rentals.data, status=HTTP_200_OK)
+        except Exception:
+            return Response('invalid user', status=HTTP_400_BAD_REQUEST)
 
-    
+        
     def post(self, request):
-        pass
-        # data = request.data.copy()
-        # data['rental_list'] = request.user.id
-
-        # new_rental= RentalSerializer(data=data, partial=True)
-
-        # if new_rental.is_valid():
-        #     new_rental.save()
-        #     new_rental.rentals.set(request.data.get('rentals', []))
-        #     return Response(new_rental.data, status=HTTP_201_CREATED)
-        # return Response(new_rental.errors, status=HTTP_400_BAD_REQUEST)
-
+        try:
+            client = request.user
+            book = Book.objects.get(id=request.data.get('rental'))
+            rental_instance = Rental.objects.create(renter=client, rental=book)
+            new_rental = RentalSerializer(rental_instance)
+            return Response(new_rental.data, status=HTTP_201_CREATED)
+        except Exception:
+            return Response('invalid post', status=HTTP_400_BAD_REQUEST)
 
 
 class A_rental(APIView):
@@ -44,8 +41,20 @@ class A_rental(APIView):
         rental = get_object_or_404(Rental, id=id)
         return Response(RentalSerializer(rental).data)
     
-    def put(self, request):
-        pass
+    # def put(self, request, id):
+    #     rental = get_object_or_404(Rental, id=id)
+    #     updated_rental = RentalSerializer(rental, data=request.data, partial=True)
+    #     if updated_rental.is_valid():
+    #         updated_rental.save()
+    #         return Response(updated_rental.data, status=HTTP_201_CREATED)
+    #     return Response(status=HTTP_400_BAD_REQUEST)
 
-    def delete(self, request):
-        pass
+    def delete(self, request, id):
+        rental = get_object_or_404(Rental, id=id)
+        rental.delete()
+        return Response(status=HTTP_204_NO_CONTENT)
+
+
+
+
+    
